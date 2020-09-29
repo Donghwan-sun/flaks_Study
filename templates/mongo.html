@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mongoTest</title>
+</head>
+<body>
+    <h1>_MongoDB와 연결하기</h1>
+    <div>
+        <p>연결이 성공하면 아래 데이터가 뜸</p>
+        <p>------------------------------</p>
+        {%for i in data%}
+            <p>이름: {i.name}}</p>
+            <p>내용: {i.content}}</p>
+            <p>------------------</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
