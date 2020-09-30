@@ -1,13 +1,18 @@
+import sys
 from pymongo import MongoClient
-from flask import Flask, url_for, render_template
 
-app = Flask(__name__)
+my_client = MongoClient("mongodb://localhost:27017/")
 
-@app.route('/mongo', methods=['POST'])
-def mongoTest():
-    client = MongoClient('mongodb://localhost27017/')
-    db = client.newDatabase
-    collection = db.mongoTest
-    results = collection.find()
-    client.close()
-    return render_template('mongo.html', data=results)
+mydb = my_client['test']
+mycol = mydb['customers']
+doc = [{"name": "sundonghwan", "address": "MOKDONG, Seoul"},
+       {"name": "KIM", "address": "MOKDONG, Seoul"},
+       {"name": "PARK", "address": "MOKDONG, Seoul"}]
+
+x = mycol.insert_many(doc)
+print(x.inserted_ids)
+
+fine = mycol.find().sort("name")
+
+for list in fine:
+       print(list['name'])
